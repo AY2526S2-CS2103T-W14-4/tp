@@ -16,7 +16,7 @@ Pacebook helps running coaches better organise athlete information and monitor p
 Pacebook helps running coaches:
 - Add, view and delete athlete profiles and training records
 
---- 
+---
 
 ## 🏢 Acknowledgement
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
