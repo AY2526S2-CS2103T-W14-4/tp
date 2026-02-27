@@ -288,32 +288,120 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the athlete tracking app and the **Actor** is the **Coach**, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a new athlete profile**
+
+**Actor:** Coach
+
+**Objective:** The coach wants to register a new athlete so they can start tracking training progress.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  Coach enters the addathlete command with all required fields: `addathlete n/John Tan a/17 p/91234567 ad/NUS Hall d/02-10-2026`
+2.  System validates all fields (name, age, phone, address, start date) and checks that the phone number is unique.
+3.  System saves the athlete profile to the data file.
+4.  System shows a confirmation message: Added athlete: John Tan (Age: 17, Phone: 91234567, Address: NUS Hall, Start: 02-10-2026)
+5.  Athlete appears in the athlete list.
 
     Use case ends.
 
-**Extensions**
+**Use case: View an athlete profile and their personal bests**
 
-* 2a. The list is empty.
+**Actor:** Coach
 
-  Use case ends.
+**Objective:** The coach wants to review an athlete's details and training records.
 
-* 3a. The given index is invalid.
+**MSS**
 
-    * 3a1. AddressBook shows an error message.
+1.  Coach enters the viewathlete command with an index: `viewathlete 1`
+2.  System retrieves the athlete profile corresponding to index 1.
+3.  System displays the athlete's profile (name, age, phone, address, start date).
+4.  System displays personal bests by distance (best time + date), or shows "No training records yet" if there are none.
 
-      Use case resumes at step 2.
+    Use case ends.
 
-*{More to be added}*
+**Use case: Find an athlete by a keyword and view their full details**
+
+**Actor:** Coach
+
+**Objective:** The coach remembers a student's phone number but not their full name, and wants to review their performance before a session.
+
+**MSS**
+
+1.  Coach uses the find command with a partial detail (e.g., phone number or tag) to locate the athlete: `find 9123`
+2.  System displays matching athletes with their indices.
+3.  Coach uses the viewathlete command with the index from the search results: `viewathlete 3`
+4.  System displays the athlete's full profile, training sessions, and personal bests.
+
+    Use case ends.
+
+**Use case: Delete an athlete profile**
+
+**Actor:** Coach
+
+**Objective:** The coach wants to remove an athlete from the system and delete all their associated training records.
+
+**MSS**
+
+1.  Coach enters the deleteathlete command with an index: `deleteathlete 2`
+2.  System validates the index exists.
+3.  System removes the athlete profile and all associated timing records.
+4.  System saves the updated data file.
+5.  System shows a confirmation message: Deleted athlete: *Name*
+6.  Athlete is removed from the athlete list.
+
+    Use case ends.
+
+**Use case: Remove an athlete profile after reviewing their historical data**
+
+**Actor:** Coach
+
+**Objective:** A student has left the team, and the coach wants to remove their profile while confirming all their data is preserved (or at least reviewed) before a final deletion.
+
+**MSS**
+
+1.  Coach uses the viewathlete command to review the athlete's full training history before removal: `viewathlete 2`
+2.  System displays the athlete's full profile and training history.
+3.  Coach uses the deleteathlete command to remove the profile: `deleteathlete 2`
+4.  System removes the athlete from the active squad list.
+
+    Use case ends.
+
+**Use case: Add a run timing record and update personal best if applicable**
+
+**Actor:** Coach
+
+**Objective:** The coach wants to log a new timing for an athlete and have the system update personal bests automatically.
+
+**MSS**
+
+1.  Coach enters the addtiming command with athlete index, distance, minutes, and seconds: `addtiming 1 dist/2.4 min/10 sec/30`
+2.  System validates the index exists, the distance is valid, minutes/seconds are valid, and total time > 0.
+3.  System adds the timing record to the athlete's profile.
+4.  System updates the athlete's personal best for that distance if the new timing is the best.
+5.  System shows a confirmation message, e.g.: Added timing for John Tan: 2.4km in 10min 30s
+6.  If personal best changed, system also shows: New personal best for 2.4km: 10min 30s
+
+    Use case ends.
+
+**Use case: Delete a specific run timing record and recalculate personal best if needed**
+
+**Actor:** Coach
+
+**Objective:** The coach wants to remove an incorrect timing entry, and ensure the personal best is recalculated correctly if that record was the best.
+
+**MSS**
+
+1.  Coach enters the deletetiming command with athlete index and record index: `deletetiming 1 3`
+2.  System validates the athlete index exists and the timing record index exists for that athlete.
+3.  System deletes the selected timing record.
+4.  System recalculates the personal best for that distance if the deleted record affected it.
+5.  System saves the updated data file.
+6.  System shows a confirmation message, e.g.: Deleted timing for John Tan: 2.4km in 10min 30s
+7.  If personal best changed, system also shows: New personal best for 2.4km: 10min 45s
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
