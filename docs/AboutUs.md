@@ -38,15 +38,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Vincent Gavriel Julijanto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vincentjulijanto.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/jhttps://github.com/VincentJulijanto)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Code Quality
+* Responsibilities: Looks after code quality, ensure adherence to coding standards.
 
 ### James Doe
 
