@@ -262,29 +262,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Running coaches
+* Running coaches and track instructors who manage multiple athletes, often in school teams, clubs, academies, or private coaching, similar to how people use Strava to log and review training progress. They care about consistent tracking, quick comparisons over time, and simple ways to spot improvement.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+Pacebook builds on AB3’s structured contact management system to help running coaches better organise athlete information and monitor performance over time. By turning athlete records into performance trends, the platform supports informed coaching decisions, improves training effectiveness, and reduces administrative workload, allowing coaches to focus on athlete growth.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​ | I want to …​ | So that I can…​ |
+|--------|--------|-------------|----------------|
+| `* * *` | running coach | add athlete profiles | keep track of my students’ personal and performance information |
+| `* * *` | running coach | view an athlete’s profile | quickly recall their performance details during training sessions |
+| `* * *` | running coach | view a list of all my athletes | get an overview of my squad |
+| `* * *` | running coach | log running timings for an athlete | track their performance over time |
+| `* *` | running coach | update athlete profile details | ensure their information stays accurate over time |
+| `* *` | running coach | delete athlete profiles | remove students who are no longer under my coaching |
+| `* *` | running coach | search athletes using keywords or tags | quickly locate specific students |
+| `* *` | running coach | view athletes' average times and personal bests | quickly assess their current performance level |
+| `* *` | running coach | see week-to-week improvement indicators | determine whether an athlete is progressing |
+| `*` | running coach onboarding a new squad | import athlete profiles from a CSV file | avoid adding them one by one |
+| `*` | running coach | export athlete profiles to a CSV file | back up data or use it in other systems |
+| `*` | running coach | view performance charts | visually spot trends over time |
+| `*` | running coach | see when an athlete achieves a personal best | recognise improvement and motivate them |
 
 ### Use cases
 
