@@ -29,6 +29,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.StartDate;
 import seedu.address.model.tag.Tag;
 
@@ -61,10 +62,6 @@ public class EditCommand extends Command {
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
-    /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-     */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
@@ -94,10 +91,6 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
@@ -107,10 +100,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StartDate updatedStartDate = editPersonDescriptor.getStartDate().orElse(personToEdit.getStartDate());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedAge, updatedPhone,
-                updatedEmail, updatedAddress, updatedStartDate, updatedTags);
+                updatedEmail, updatedAddress, updatedStartDate, updatedRemark, updatedTags);
     }
 
     @Override
@@ -119,7 +113,6 @@ public class EditCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof EditCommand)) {
             return false;
         }
@@ -137,25 +130,19 @@ public class EditCommand extends Command {
                 .toString();
     }
 
-    /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
     public static class EditPersonDescriptor {
+
         private Name name;
         private Age age;
         private Phone phone;
         private Email email;
         private Address address;
         private StartDate startDate;
+        private Remark remark;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
 
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setAge(toCopy.age);
@@ -163,77 +150,39 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setStartDate(toCopy.startDate);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
-        /**
-         * Returns true if at least one field is edited.
-         */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, age, phone, email, address, startDate, remark, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
+        public void setName(Name name) { this.name = name; }
+        public Optional<Name> getName() { return Optional.ofNullable(name); }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
+        public void setAge(Age age) { this.age = age; }
+        public Optional<Age> getAge() { return Optional.ofNullable(age); }
 
-        public void setAge(Age age) {
-            this.age = age;
-        }
+        public void setPhone(Phone phone) { this.phone = phone; }
+        public Optional<Phone> getPhone() { return Optional.ofNullable(phone); }
 
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
-        }
+        public void setEmail(Email email) { this.email = email; }
+        public Optional<Email> getEmail() { return Optional.ofNullable(email); }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
+        public void setAddress(Address address) { this.address = address; }
+        public Optional<Address> getAddress() { return Optional.ofNullable(address); }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
+        public void setStartDate(StartDate startDate) { this.startDate = startDate; }
+        public Optional<StartDate> getStartDate() { return Optional.ofNullable(startDate); }
 
-        public void setEmail(Email email) {
-            this.email = email;
-        }
+        public void setRemark(Remark remark) { this.remark = remark; }
+        public Optional<Remark> getRemark() { return Optional.ofNullable(remark); }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        public void setStartDate(StartDate startDate) {
-            this.startDate = startDate;
-        }
-
-        public Optional<StartDate> getStartDate() {
-            return Optional.ofNullable(startDate);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
@@ -244,7 +193,6 @@ public class EditCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
             if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
@@ -256,6 +204,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(startDate, otherEditPersonDescriptor.startDate)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -268,6 +217,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("startDate", startDate)
+                    .add("remark", remark)
                     .add("tags", tags)
                     .toString();
         }

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,12 +26,15 @@ public class Person {
     // Data fields
     private final Address address;
     private final StartDate startDate;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Age age, Phone phone, Email email, Address address, StartDate startDate, Set<Tag> tags) {
+    public Person(Name name, Age age, Phone phone, Email email,
+                  Address address, StartDate startDate,
+                  Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, startDate, tags);
         this.name = name;
         this.age = age;
@@ -38,6 +42,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.startDate = startDate;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -108,13 +113,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && startDate.equals(otherPerson.startDate)
+                && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, age, phone, email, address, startDate, tags);
+        return Objects.hash(name, age, phone, email, address, startDate, remark, tags);
     }
 
     @Override
@@ -126,8 +132,13 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("start date", startDate)
+                .add("remark", remark)
                 .add("tags", tags)
                 .toString();
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
 }
