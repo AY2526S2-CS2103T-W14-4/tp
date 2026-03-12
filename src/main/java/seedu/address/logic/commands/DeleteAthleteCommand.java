@@ -14,9 +14,9 @@ import seedu.address.model.person.Person;
 /**
  * Deletes an athlete profile identified using its displayed index.
  */
-public class DeleteCommand extends Command {
+public class DeleteAthleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteathlete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the athlete profile identified by the index number used "
@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteAthleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -53,11 +53,11 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteAthleteCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
+        DeleteAthleteCommand otherDeleteCommand = (DeleteAthleteCommand) other;
         return targetIndex.equals(otherDeleteCommand.targetIndex);
     }
 
