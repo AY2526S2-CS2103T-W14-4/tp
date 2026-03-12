@@ -37,7 +37,7 @@ public class RunTiming {
     }
 
     public String getPrintFormat() {
-        return DISTANCE + ", " + minutes + "min " + seconds + "s";
+        return DISTANCE + "km, " + minutes + "min " + seconds + "s";
     }
 
     @Override

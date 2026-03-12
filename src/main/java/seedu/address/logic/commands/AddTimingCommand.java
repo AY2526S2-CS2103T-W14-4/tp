@@ -41,12 +41,18 @@ public class AddTimingCommand extends Command {
 
         Person athlete = athletes.get(index.getZeroBased());
 
-        athlete.addRunTiming(timing);
+        boolean fastest = athlete.addRunTiming(timing);
 
         String resultMessage = "Added timing for "
                 + athlete.getName()
                 + ": "
-                + timing;
+                + timing + "\n";
+
+        if (fastest) {
+            resultMessage = resultMessage +
+                    "New personal best for 2.4km: " + timing.getMinutes() + "min " +
+                    timing.getSeconds() + "s\n";
+        }
 
         return new CommandResult(resultMessage);
     }
