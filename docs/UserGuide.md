@@ -5,9 +5,9 @@ title: User Guide
 
 ## Pacebook
 
-At its core, Pacebook helps running coaches like you to manage your runners’ contacts effectively. But it's also much 
-more than that. It helps you keep track of runners’ data, such as their timings, training sessions, and emergency 
-contacts. It also allows you to find your athletes easily and monitor their improvements over time. So, whether you are 
+At its core, Pacebook helps running coaches like you to manage your runners’ contacts effectively. But it's also much
+more than that. It helps you keep track of runners’ data, such as their timings, training sessions, and emergency
+contacts. It also allows you to find your athletes easily and monitor their improvements over time. So, whether you are
 a private coach or training a professional running club, let Pacebook match your pace.
 
 Pacebook is a **desktop application designed for running coaches to manage runners, training plans, and essential contact information efficiently**. It is optimized for use via a **Command Line Interface (CLI)**, enabling fast interaction while still providing a simple graphical interface.
@@ -121,19 +121,19 @@ These features enable coaches to **plan training sessions more effectively, redu
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are values you need to provide.  
+* Words in `UPPER_CASE` are values you need to provide.
   For example, in `addathlete n/NAME`, `NAME` should be replaced with the athlete’s actual name, such as `addathlete n/John Doe`.
 
-* Items in square brackets are optional.  
+* Items in square brackets are optional.
   For example, `n/NAME [t/TAG]` can be used as `n/John Doe t/sprinter` or just `n/John Doe`.
 
-* Items followed by `…` can be used multiple times, including zero times.  
+* Items followed by `…` can be used multiple times, including zero times.
   For example, `[t/TAG]…` can be omitted completely, or used as `t/teamA`, `t/teamA t/relay`, and so on.
 
-* Parameters can be entered in any order unless otherwise stated.  
+* Parameters can be entered in any order unless otherwise stated.
   For example, if the command format is `n/NAME p/PHONE_NUMBER`, then `p/PHONE_NUMBER n/NAME` also works.
 
-* Extra words added to commands that do not take parameters, such as `help`, `list`, `exit`, and `clear`, will be ignored.  
+* Extra words added to commands that do not take parameters, such as `help`, `list`, `exit`, and `clear`, will be ignored.
   For example, `help 123` will still be read as `help`.
 
 * If you are using a PDF version of this guide, be careful when copying commands that span multiple lines, since some spaces around line breaks may be lost when pasting.
@@ -162,7 +162,7 @@ Adds a new athlete to Pacebook.
 
 Format: `addathlete n/NAME a/AGE p/PHONE_NUMBER e/EMAIL ad/ADDRESS d/START_DATE [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**  
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An athlete can have any number of tags, including none.
 </div>
 
@@ -245,7 +245,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only names are searched.
 * Only full words will be matched. e.g. `Han` will not match `Hans`
-* Athletes matching at least one keyword will be returned (i.e. `OR` search).  
+* Athletes matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Warnings:
@@ -430,8 +430,8 @@ Tip:
 
 Pacebook stores its data as a JSON file at `[JAR file location]/data/addressbook.json`. Advanced users can edit this file directly if needed.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**  
-If your changes corrupt the data file, Pacebook may discard unreadable data or fail to load it correctly the next time it runs. It is strongly recommended to back up the file before editing it manually.  
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes corrupt the data file, Pacebook may discard unreadable data or fail to load it correctly the next time it runs. It is strongly recommended to back up the file before editing it manually.
 Furthermore, certain edits can cause Pacebook to behave in unexpected ways if values are outside the accepted format. Edit the data file only if you are confident that you can update it correctly.
 </div>
 
