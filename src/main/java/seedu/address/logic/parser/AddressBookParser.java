@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,8 +42,11 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        logger.log(Level.INFO, "Starting to parse user input: {0}", userInput);
+
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
+            logger.warning("User input does not match basic command format.");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
@@ -57,39 +61,51 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing add command");
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing edit command");
             return new EditCommandParser().parse(arguments);
 
         case DeleteAthleteCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing delete athlete command");
             return new DeleteAthleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing clear command");
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing find command");
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing list command");
             return new ListCommand();
 
         case ViewAthleteCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing view athlete command");
             return new ViewAthleteCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing exit command");
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing help command");
             return new HelpCommand();
 
         case AddTimingCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing add timing command");
             return new AddTimingCommandParser().parse(arguments);
 
         case DeleteTimingCommand.COMMAND_WORD:
+            logger.log(Level.INFO, "Parsing delete timing command");
             return new DeleteTimingCommandParser().parse(arguments);
 
         default:
+            logger.log(Level.WARNING, "Unknown command entered: {0}", userInput);
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
