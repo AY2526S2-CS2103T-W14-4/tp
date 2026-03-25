@@ -29,9 +29,10 @@ public class AddTimingCommand extends Command {
 
     /** Usage instructions for this command. */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a 2.4km run timing to the athlete identified by the index number.\n"
-            + "Parameters: INDEX min/MINUTES sec/SECONDS\n"
-            + "Example: " + COMMAND_WORD + " 1 min/10 sec/30";
+            + ": Adds a run timing to the athlete identified by the index number.\n"
+            + "Parameters: INDEX dist/DISTANCE min/MINUTES sec/SECONDS\n"
+            + "Supported distances: 400m, 2.4km, 10km, 42km\n"
+            + "Example: " + COMMAND_WORD + " 1 dist/2.4km min/10 sec/30";
 
     /** Index of the athlete whose timing is to be recorded. */
     private final Index index;
@@ -98,8 +99,9 @@ public class AddTimingCommand extends Command {
                 + timing + "\n";
 
         if (fastest) {
-            resultMessage = resultMessage
-                    + "New personal best for 2.4km: "
+            resultMessage += "New personal best for "
+                    + timing.getDistance()
+                    + ": "
                     + timing.getMinutes() + "min "
                     + timing.getSeconds() + "s\n";
         }

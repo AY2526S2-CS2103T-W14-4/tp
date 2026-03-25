@@ -18,8 +18,10 @@ import static java.util.Objects.requireNonNull;
  */
 public class RunTiming {
 
-    /** Fixed distance of the run in kilometres. */
-    private static final double DISTANCE = 2.4;
+    public static final String MESSAGE_DISTANCE_CONSTRAINTS = "Distance must be one of: 2.4km, 400m, 10km, 42km";
+
+    /** Distance of the run command. */
+    private final String distance;
 
     /** Minutes component of the recorded timing. */
     private final int minutes;
@@ -34,12 +36,27 @@ public class RunTiming {
      * @param seconds The seconds component of the timing.
      * @throws NullPointerException if any argument is null.
      */
-    public RunTiming(int minutes, double seconds) {
+    public RunTiming(String distance, int minutes, double seconds) {
+        requireNonNull(distance);
         requireNonNull(minutes);
         requireNonNull(seconds);
 
+        this.distance = distance;
         this.minutes = minutes;
         this.seconds = seconds;
+    }
+
+    /**
+     * Returns whether the given distance is supported.
+     *
+     * @param test Distance string to validate.
+     * @return {@code true} if supported.
+     */
+    public static boolean isValidDistance(String test) {
+        return "2.4km".equals(test)
+                || "400m".equals(test)
+                || "10km".equals(test)
+                || "42km".equals(test);
     }
 
     /**
@@ -48,7 +65,7 @@ public class RunTiming {
      * @return the recorded minutes.
      */
     public int getMinutes() {
-        return minutes;
+        return this.minutes;
     }
 
     /**
@@ -57,7 +74,7 @@ public class RunTiming {
      * @return the recorded seconds.
      */
     public double getSeconds() {
-        return seconds;
+        return this.seconds;
     }
 
     /**
@@ -65,8 +82,8 @@ public class RunTiming {
      *
      * @return the run distance in kilometres (always {@code 2.4}).
      */
-    public double getDistance() {
-        return DISTANCE;
+    public String getDistance() {
+        return this.distance;
     }
 
     /**
@@ -87,7 +104,7 @@ public class RunTiming {
      * @return formatted timing string (e.g. {@code "2.4km, 10min 30s"}).
      */
     public String getPrintFormat() {
-        return DISTANCE + "km, " + minutes + "min " + seconds + "s";
+        return this.distance + ", " + this.minutes + "min " + this.seconds + "s";
     }
 
     /**
@@ -97,6 +114,25 @@ public class RunTiming {
      */
     @Override
     public String toString() {
-        return DISTANCE + "km in " + minutes + "min " + seconds + "s";
+        return this.distance + " in " + this.minutes + "min " + this.seconds + "s";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof RunTiming)) {
+            return false;
+        }
+        RunTiming otherTiming = (RunTiming) other;
+        return distance.equals(otherTiming.distance)
+                && minutes == otherTiming.minutes
+                && Double.compare(seconds, otherTiming.seconds) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return distance.hashCode() + 31 * minutes + Double.hashCode(seconds);
     }
 }
