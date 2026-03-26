@@ -58,7 +58,7 @@ public class Person {
      */
     public Person(Name name, Age age, Phone phone, Email email,
                   Address address, StartDate startDate, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, startDate, tags);
+        requireAllNonNull(name, age, phone, email, address, startDate, tags);
         this.name = name;
         this.age = age;
         this.phone = phone;
@@ -135,6 +135,10 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    public boolean hasRunTimings() {
+        return !runTimings.isEmpty();
+    }
+
     /**
      * Returns an immutable list of recorded run timings.
      *
@@ -144,6 +148,17 @@ public class Person {
      */
     public List<RunTiming> getRunTimings() {
         return Collections.unmodifiableList(runTimings);
+    }
+
+    /**
+     * Replaces the current run timings with the given list.
+     * Used when restoring timings from storage.
+     *
+     * @param timings The list of {@link RunTiming} records to set.
+     */
+    public void setRunTimings(List<RunTiming> timings) {
+        this.runTimings.clear();
+        this.runTimings.addAll(timings);
     }
 
     /**
@@ -181,7 +196,7 @@ public class Person {
      *
      * @return the fastest timing in seconds.
      */
-    private double getBestTime() {
+    public double getBestTime() {
         double bestTime = Double.MAX_VALUE;
         for (RunTiming time : runTimings) {
             if (bestTime > time.getTotalSeconds()) {

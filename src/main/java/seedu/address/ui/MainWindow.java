@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -24,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final double MAX_RESULT_DISPLAY_RATIO = 0.5;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -46,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private SplitPane mainSplitPane;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -121,6 +126,13 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        mainSplitPane.setDividerPositions(0.2);
+        mainSplitPane.getDividers().get(0).positionProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > MAX_RESULT_DISPLAY_RATIO) {
+                mainSplitPane.getDividers().get(0).setPosition(MAX_RESULT_DISPLAY_RATIO);
+            }
+        });
     }
 
     /**
