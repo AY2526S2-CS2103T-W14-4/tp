@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISTANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MIN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEC;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTimingCommand;
@@ -40,9 +42,9 @@ public class AddTimingCommandParser implements Parser<AddTimingCommand> {
         map.verifyNoDuplicatePrefixesFor(PREFIX_DISTANCE, PREFIX_MIN, PREFIX_SEC);
 
         // Check missing required fields
-        if (map.getValue(PREFIX_DISTANCE).isEmpty() ||
-                map.getValue(PREFIX_MIN).isEmpty() ||
-                map.getValue(PREFIX_SEC).isEmpty()) {
+        if (map.getValue(PREFIX_DISTANCE).isEmpty()
+                || map.getValue(PREFIX_MIN).isEmpty()
+                || map.getValue(PREFIX_SEC).isEmpty()) {
             throw new ParseException("Missing required fields: dist/DISTANCE min/MINUTES sec/SECONDS");
         }
 
