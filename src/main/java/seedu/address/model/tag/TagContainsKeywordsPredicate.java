@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
+/**
+ * Tests that tags given by the user matches at least one of the tags belonging to a person
+ */
 public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 

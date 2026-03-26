@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
-public class PhoneContainsKeywordsPredicate implements Predicate<Person>  {
+/**
+ * Tests that the person's phone number matches the phone number specified by the user in the command
+ */
+public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     public PhoneContainsKeywordsPredicate(List<String> keywords) {
