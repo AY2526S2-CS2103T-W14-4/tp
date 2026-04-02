@@ -37,6 +37,7 @@ public class Person {
 
     /** Additional data fields */
     private final Address address;
+    private final EmergencyContact emergencyContact;
     private final StartDate startDate;
 
     /** Tags associated with this person. */
@@ -56,14 +57,15 @@ public class Person {
      * @param startDate The person's start date.
      * @param tags Tags associated with the person.
      */
-    public Person(Name name, Age age, Phone phone, Email email,
-                  Address address, StartDate startDate, Set<Tag> tags) {
-        requireAllNonNull(name, age, phone, email, address, startDate, tags);
+    public Person(Name name, Age age, Phone phone, Email email, Address address,
+                  EmergencyContact emergencyContact, StartDate startDate, Set<Tag> tags) {
+        requireAllNonNull(name, age, phone, email, address, emergencyContact, startDate, tags);
         this.name = name;
         this.age = age;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.emergencyContact = emergencyContact;
         this.startDate = startDate;
         this.tags.addAll(tags);
         this.bestTime = Integer.MAX_VALUE;
@@ -112,6 +114,10 @@ public class Person {
      */
     public Address getAddress() {
         return address;
+    }
+
+    public EmergencyContact getEmergencyContact() {
+        return emergencyContact;
     }
 
     /**
@@ -252,13 +258,15 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && emergencyContact.equals(otherPerson.emergencyContact)
                 && startDate.equals(otherPerson.startDate)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age, phone, email, address, startDate, tags);
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, age, phone, email, address, emergencyContact, startDate, tags);
     }
 
     /**
@@ -274,6 +282,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("emergencyContact", emergencyContact)
                 .add("start date", startDate)
                 .add("tags", tags)
                 .toString();
