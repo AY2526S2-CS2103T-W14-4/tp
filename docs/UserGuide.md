@@ -78,7 +78,7 @@ You do not need to know how to program — just install it once using the links 
 
 ## Target Users
 
-Pacebook is designed for **running coaches aged 20–35** who manage athlete rosters
+Pacebook is designed for **running coaches aged 20–35** in Singapore who manage athlete rosters
 across training groups or competitive squads.
 
 ### Run Club Coaches
