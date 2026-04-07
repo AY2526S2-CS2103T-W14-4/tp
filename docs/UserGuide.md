@@ -413,7 +413,7 @@ Examples:
 <div markdown="block" class="alert alert-success">✅ **Expected output:**
 
 * A success message confirming that the timing was added.
-* If the new timing is the athlete’s fastest timing so far, a **new personal best** message is also shown.
+* If the new timing is the athlete’s fastest recorded timing for that distance, a **new personal best** message is also shown.
 </div>
 
 ---
