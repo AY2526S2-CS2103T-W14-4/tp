@@ -12,7 +12,7 @@ contacts. It also allows you to find your athletes easily and monitor their impr
 So, whether you manage a competitive squad or a casual running group, **let Pacebook match your pace**.
 
 ### What is Pacebook?
-Pacebook is a **desktop application designed for running coaches to manage runners, training plans,
+Pacebook is a **desktop application designed for running coaches to manage runners, run timings,
 and essential contact information efficiently**. It is optimised for use via a **Command Line Interface (CLI)**, enabling fast interaction while still providing a simple graphical interface.
 
 * Table of Contents
