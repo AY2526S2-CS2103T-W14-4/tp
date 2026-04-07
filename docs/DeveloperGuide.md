@@ -324,27 +324,29 @@ MSS:
 2. Pacebook validates all fields (name, age, phone, address, start date) and checks that the phone number is unique.
 3. Pacebook saves the athlete profile to the data file.
 4. Pacebook displays success message with added athlete details in the message box: Added athlete: John Tan (Age: 17, Phone: 91234567, Address: NUS Hall, Start: 02-10-2026)
-5. Athlete details are now visible in the main window.<br>
-Use case ends.
+5. Athlete details are now visible in the main window.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects invalid athlete details.<br>
-   1a1. Pacebook displays an error message indicating the validation error(s). <br>
-   1a2. Coach enters new data. <br>
-   Steps 1a1-1a2 are repeated until the data entered are correct. <br>
-   Use case resumes from step 2. <br><br>
+- **1a.** Pacebook detects invalid athlete details.
+   - **1a1.** Pacebook displays an error message indicating the validation error(s).
+   - **1a2.** Coach enters new data.
+   - Steps 1a1-1a2 are repeated until the data entered are correct.
+   - Use case resumes from step 2.
 
-1b. Pacebook detects that the phone number already exists. <br>
-   1b1. Pacebook displays an error message indicating the duplicate phone number. <br>
-   1b2. Coach enters new data. <br>
-   Steps 1b1-1b2 are repeated until the data entered are correct. <br>
-   Use case resumes from step 2.
+- **1b.** Pacebook detects that the phone number already exists.
+   - **1b1.** Pacebook displays an error message indicating the duplicate phone number.
+   - **1b2.** Coach enters new data.
+   - Steps 1b1-1b2 are repeated until the data entered are correct.
+   - Use case resumes from step 2.
+
+---
 
 **UC2 - View Athlete Profile And Personal Bests**
 
-System: Pacebook <br>
-Use case: UC2 - View Athlete Profile And Run Timings <br>
+System: Pacebook  
+Use case: UC2 - View Athlete Profile And Personal Bests  
 Actor: Coach
 
 MSS:
@@ -352,46 +354,50 @@ MSS:
 1. Coach inputs the athlete index to view: `view 1`
 2. Pacebook retrieves the athlete profile corresponding to the index.
 3. Pacebook displays the athlete's profile (name, age, phone, address, start date) in the message box.
-4. Pacebook displays personal bests by distance (best time + date), or shows "No training records yet" if there are none.<br>
-Use case ends.
+4. Pacebook displays personal bests by distance (best time + date), or shows "No training records yet" if there are none.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects an invalid athlete index.<br>
-   1a1. Pacebook displays an error message indicating the index error.<br>
-   1a2. Coach enters new index.<br>
-   Steps 1a1-1a2 are repeated until the index entered is correct.<br>
-   Use case resumes from step 2.
+- **1a.** Pacebook detects an invalid athlete index.
+   - **1a1.** Pacebook displays an error message indicating the index error.
+   - **1a2.** Coach enters new index.
+   - Steps 1a1-1a2 are repeated until the index entered is correct.
+   - Use case resumes from step 2.
+
+---
 
 **UC3 - Find Athlete By Keyword**
 
-System: Pacebook <br>
-Use case: UC3 - Find Athlete By Keyword <br>
+System: Pacebook  
+Use case: UC3 - Find Athlete By Keyword  
 Actor: Coach
 
 MSS:
 
 1. Coach specifies keyword(s) to find athletes: `find 9123`
 2. Pacebook displays success message and number of matching athletes found in the message box.
-3. Pacebook displays all athlete entries which match the specified keyword(s) within the main window.<br>
-Use case ends.
+3. Pacebook displays all athlete entries which match the specified keyword(s) within the main window.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects invalid find parameters. <br>
-   1a1. Pacebook displays an error message indicating the parameter error(s).<br>
-   1a2. Coach enters new data.<br>
-   Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-   Use case resumes from step 2.<br><br>
+- **1a.** Pacebook detects invalid find parameters.
+   - **1a1.** Pacebook displays an error message indicating the parameter error(s).
+   - **1a2.** Coach enters new data.
+   - Steps 1a1-1a2 are repeated until the data entered are correct.
+   - Use case resumes from step 2.
 
-2a. No matching athlete entries found.<br>
-   2a1. Pacebook displays a message indicating no matching results found and no athletes will be listed in the main window.<br>
-   Use case ends.<br>
+- **2a.** No matching athlete entries found.
+   - **2a1.** Pacebook displays a message indicating no matching results found and no athletes will be listed in the main window.
+   - Use case ends.
+
+---
 
 **UC4 - Delete Athlete Profile**
 
-System: Pacebook <br>
-Use case: UC4 - Delete Athlete Profile <br>
+System: Pacebook  
+Use case: UC4 - Delete Athlete Profile  
 Actor: Coach
 
 MSS:
@@ -401,51 +407,55 @@ MSS:
 3. Pacebook removes the athlete profile and all associated timing records.
 4. Pacebook saves the updated data file.
 5. Pacebook displays success message and deleted athlete's details in the message box.
-6. Updated athlete list is now visible in the main window. Deleted athlete is no longer visible.
-Use case ends.
+6. Updated athlete list is now visible in the main window. Deleted athlete is no longer visible.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects an invalid athlete index. <br>
-   1a1. Pacebook displays an error message indicating the index error. <br>
-   1a2. Coach enters new index. <br>
-   Steps 1a1-1a2 are repeated until the index entered is correct. <br>
-   Use case resumes from step 2.
+- **1a.** Pacebook detects an invalid athlete index.
+   - **1a1.** Pacebook displays an error message indicating the index error.
+   - **1a2.** Coach enters new index.
+   - Steps 1a1-1a2 are repeated until the index entered is correct.
+   - Use case resumes from step 2.
+
+---
 
 **UC5 - Remove Athlete Profile After Reviewing Historical Data**
 
-System: Pacebook<br>
-Use case: UC5 - Remove Athlete Profile After Reviewing Historical Data<br>
+System: Pacebook  
+Use case: UC5 - Remove Athlete Profile After Reviewing Historical Data  
 Actor: Coach
 
 MSS:
 
-1. Coach uses the viewathlete command to review the athlete's full training history before removal: `viewathlete 2`
+1. Coach uses the `viewathlete` command to review the athlete's full training history before removal: `viewathlete 2`
 2. Pacebook displays the athlete's full profile and training history.
-3. Coach uses the deleteathlete command to remove the profile: `del 2`
+3. Coach uses the `deleteathlete` command to remove the profile: `del 2`
 4. Pacebook removes the athlete from the active squad list.
 5. Pacebook displays success message and deleted athlete's details in the message box.
-6. Updated athlete list is now visible in the main window.<br>
-Use case ends.
+6. Updated athlete list is now visible in the main window.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects an invalid athlete index for viewing.<br>
-   1a1. Pacebook displays an error message indicating the index error.<br>
-   1a2. Coach enters new index.<br>
-   Steps 1a1-1a2 are repeated until the index entered is correct.<br>
-   Use case resumes from step 2.<br><br>
+- **1a.** Pacebook detects an invalid athlete index for viewing.
+   - **1a1.** Pacebook displays an error message indicating the index error.
+   - **1a2.** Coach enters new index.
+   - Steps 1a1-1a2 are repeated until the index entered is correct.
+   - Use case resumes from step 2.
 
-3a. Pacebook detects an invalid athlete index for deletion.<br>
-   3a1. Pacebook displays an error message indicating the index error.<br>
-   3a2. Coach enters new index.<br>
-   Steps 3a1-3a2 are repeated until the index entered is correct.<br>
-   Use case resumes from step 4.
+- **3a.** Pacebook detects an invalid athlete index for deletion.
+   - **3a1.** Pacebook displays an error message indicating the index error.
+   - **3a2.** Coach enters new index.
+   - Steps 3a1-3a2 are repeated until the index entered is correct.
+   - Use case resumes from step 4.
+
+---
 
 **UC6 - Add Run Timing Record**
 
-System: Pacebook<br>
-Use case: UC6 - Add Run Timing Record<br>
+System: Pacebook  
+Use case: UC6 - Add Run Timing Record  
 Actor: Coach
 
 MSS:
@@ -455,21 +465,23 @@ MSS:
 3. Pacebook adds the timing record to the athlete's profile.
 4. Pacebook updates the athlete's personal best for that distance if the new timing is the best.
 5. Pacebook displays success message in the message box, e.g.: Added timing for John Tan: 2.4km in 10min 30s
-6. If personal best changed, Pacebook also shows: New personal best for 2.4km: 10min 30s<br>
-Use case ends.
+6. If personal best changed, Pacebook also shows: New personal best for 2.4km: 10min 30s  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects invalid timing details (invalid index, distance, minutes, seconds, or total time ≤ 0).<br>
-   1a1. Pacebook displays an error message indicating the validation error(s).<br>
-   1a2. Coach enters new data.<br>
-   Steps 1a1-1a2 are repeated until the data entered are correct.<br>
-   Use case resumes from step 2.
+- **1a.** Pacebook detects invalid timing details (invalid index, distance, minutes, seconds, or total time ≤ 0).
+   - **1a1.** Pacebook displays an error message indicating the validation error(s).
+   - **1a2.** Coach enters new data.
+   - Steps 1a1-1a2 are repeated until the data entered are correct.
+   - Use case resumes from step 2.
+
+---
 
 **UC7 - Delete Run Timing Record**
 
-System: Pacebook<br>
-Use case: UC7 - Delete Run Timing Record<br>
+System: Pacebook  
+Use case: UC7 - Delete Run Timing Record  
 Actor: Coach
 
 MSS:
@@ -481,16 +493,16 @@ MSS:
 5. Pacebook saves the updated data file.
 6. Pacebook displays success message and deleted timing details in the message box, e.g.: Deleted timing for John Tan: 2.4km in 10min 30s
 7. If personal best changed, Pacebook also shows: New personal best for 2.4km: 10min 45s
-8. Updated athlete list is now visible in the main window.<br>
-Use case ends.
+8. Updated athlete list is now visible in the main window.  
+   Use case ends.
 
 Extensions:
 
-1a. Pacebook detects an invalid athlete index or timing record index.<br>
-   1a1. Pacebook displays an error message indicating the index error(s).<br>
-   1a2. Coach enters new index(es).<br>
-   Steps 1a1-1a2 are repeated until the index(es) entered are correct.<br>
-   Use case resumes from step 2.
+- **1a.** Pacebook detects an invalid athlete index or timing record index.
+   - **1a1.** Pacebook displays an error message indicating the index error(s).
+   - **1a2.** Coach enters new index(es).
+   - Steps 1a1-1a2 are repeated until the index(es) entered are correct.
+   - Use case resumes from step 2.
 
 **UC8 - Find Athlete by Name, Phone Number, Tag or Available Day**
 
