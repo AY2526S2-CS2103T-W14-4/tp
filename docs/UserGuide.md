@@ -373,7 +373,7 @@ Example:
 <div markdown="block" class="alert alert-success">✅ **Expected output:**
 
 * The selected athlete’s profile is shown.
-* Any stored run timings or training records for that athlete are shown below the profile details.
+* Any stored run timings for that athlete are shown below the profile details.
 </div>
 
 ---
