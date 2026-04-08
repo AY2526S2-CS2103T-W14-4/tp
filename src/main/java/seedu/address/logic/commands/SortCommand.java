@@ -16,12 +16,17 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the displayed athlete list by the specified field.\n"
-            + "Parameters: by/FIELD [order/ORDER]\n"
+    public static final String MESSAGE_USAGE = "sort: Sorts the displayed athlete list by the specified field.\n"
+            + "Parameters: by/FIELD [ord/ORDER]\n"
             + "Supported fields: name, pb\n"
             + "Supported orders: asc, desc\n"
-            + "Example: " + COMMAND_WORD + " by/name order/asc";
+            + "Example: sort by/name ord/asc";
+
+    public static final String MESSAGE_INVALID_SORT_FIELD =
+            "Invalid sort field: '%s'.\nSupported fields: name, pb\nExample: sort by/name ord/desc";
+
+    public static final String MESSAGE_INVALID_SORT_ORDER =
+            "Invalid sort order: '%s'.\nSupported orders: asc, desc\nExample: sort by/name ord/desc";
 
     public static final String MESSAGE_SUCCESS = "Sorted athletes by %s in %s order.";
 
