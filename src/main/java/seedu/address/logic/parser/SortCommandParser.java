@@ -31,7 +31,8 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_BY, CliSyntax.PREFIX_DISTANCE, CliSyntax.PREFIX_ORDER);
+                ArgumentTokenizer.tokenize(args,
+                        CliSyntax.PREFIX_BY, CliSyntax.PREFIX_DISTANCE, CliSyntax.PREFIX_ORDER);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_BY)
                 || !argMultimap.getPreamble().isEmpty()) {
