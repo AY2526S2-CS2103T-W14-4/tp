@@ -5,7 +5,7 @@ toc: true
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ## **Acknowledgements**
 
@@ -604,8 +604,8 @@ testers are expected to do more *exploratory* testing.
 
        Expected: The following success message is shown in the result display:
        ```
-       New person added: 
-        - Muhammad Irfan 
+       New person added:
+        - Muhammad Irfan
         - Age: 24
         - Phone: 92345678
         - Email: irfan24@example.com
@@ -638,7 +638,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There are multiple athletes in the addressbook.json.
 
     1. Prerequisites: Use the find command to display a filtered list of athletes, such that the number of athletes in the person list panel is less than the number of athletes in the address book. Refer to the guide on using the find command for detailed instructions on how to use the find instruction. For convenience, here is a sample find command that can be used if using the sample addressbook.json above:
-       `find n/Roy`
+        `find n/Roy`
 
     1. Test case: Follow the instructions for the first test case in the "Adding a valid athlete while all athletes are being shown and there are multiple athletes in Pacebook" above.
 
@@ -649,20 +649,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all athlete using the `list` command before starting each test case.
 
-    1. Test case: `add n/Chloe Ong n/Chris Ryan a/17 p/96543210 e/chloe.ong@example.com ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 ec/Mother 91234567 t/relay t/school av/Fri`
+    1. Test case: `add n/Chloe Ong n/Chris Ryan a/17 p/96543210 e/chloe.ong@example.com ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 t/relay t/school av/Fri`
 
-       Expected: The following should be displayed in the result display in red text colour:
+        Expected: The following should be displayed in the result display in red text colour:
        `Multiple values specified for the following single-valued field(s): n/`
 
-    1. Test case: `add n/Chloe Ong a/17 p/965432100 e/chloe.ong@example.com ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 ec/Mother 91234567 t/relay t/school av/Fri`
+    1. Test case: `add n/Chloe Ong a/17 p/965432100 e/chloe.ong@example.com ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 t/relay t/school av/Fri`
 
        Expected: The following should be displayed in the result display in red text colour:
        `Phone number must be exactly 8 digits and start with 8 or 9 (e.g. 91234567).`
 
-    1. Test case: `add n/Chloe Ong a/17 p/96543210 e/chloe.ong@ ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 ec/Mother 91234567 t/relay t/school av/Fri`
+    1. Test case: `add n/Chloe Ong a/17 p/96543210 e/chloe.ong@ ad/9 Pasir Ris Drive 6, #07-44 d/08/04/2026 t/relay t/school av/Fri`
 
        Expected: The following should be displayed in the result display in red text colour:
-       ```text 
+       ```text
         Emails should be of the format local-part@domain and adhere to the following constraints:
         1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
         2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
@@ -733,7 +733,7 @@ testers are expected to do more *exploratory* testing.
 
        Expected: The following error message should be displayed in the result display:
        ```
-       Invalid command format! 
+       Invalid command format!
        edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
        parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [ad/ADDRESS] [ec/EMERGENCY_CONTACT] [t/TAG]...
        Example: edit 1 p/91234567 e/johndoe@example.com
@@ -776,7 +776,7 @@ testers are expected to do more *exploratory* testing.
        `del -1`
        Expected: The following error message should be displayed in the result display:
        ```
-       Invalid command format! 
+       Invalid command format!
        del: Deletes the athlete profile identified by the index number used in the displayed athlete profile list.
        Parameters: INDEX (must be a positive integer)
        Example: del 1
@@ -850,7 +850,7 @@ Expected: The result display should display number of persons listed.
     1. Test case: `find q/Irfan`
        Expected: The following error message should be displayed in the result display:
        ```
-       Invalid command format! 
+       Invalid command format!
        find: Finds all persons whose names contain any of the specified name keywords (case-insensitive), whose tags contain any of the specified tag keywords (case-insensitive), or whose phone numbers contain any of the specified phone numbers and displays them as a list with index numbers.
        Parameters: n/KEYWORD p/PHONE_NUMBER t/TAG t/ANOTHER_TAG t/ANOTHER_TAG av/AVAILABLE_DAY ...
        Example: find n/jessy p/91234567 t/captain t/sprinter av/Mon
@@ -1037,7 +1037,7 @@ Expected: The result display should display number of persons listed.
        Test case: `view -1`
        Expected: The following error message should be displayed in the result display:
        ```
-       Invalid command format! 
+       Invalid command format!
        view: Views the athlete identified by the index number used in the displayed person list.
        Parameters: INDEX (must be a positive integer)
        Example: view 1

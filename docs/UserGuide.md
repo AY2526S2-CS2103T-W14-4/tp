@@ -36,7 +36,7 @@ You do not need to know how to program — just install it once using the links 
    - **Mac:** [Java installation guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html)
    - **Linux:** [Java installation guide for Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
+./g2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Pacebook.
 
