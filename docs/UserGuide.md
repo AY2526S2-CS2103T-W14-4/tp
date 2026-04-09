@@ -308,7 +308,7 @@ Use `list` before commands like `viewathlete`, `edit`, and `deleteathlete` if yo
 
 Sorts the displayed athlete list by the specified field.
 
-Format: `sort by/FIELD [dist/DISTANCE] [ord/ORDER]`
+Format: `sort by/FIELD [dist/DISTANCE] [order/ORDER]`
 
 Examples:
 * Before selecting runners for the inter-club competition, rank the
@@ -319,7 +319,7 @@ Examples:
   * `find t/teamA`
   * `sort by/name`
 * Identify who needs the most improvement before the next fitness test:
-  * `sort by/pb dist/400m ord/desc`
+  * `sort by/pb dist/400m order/desc`
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -335,7 +335,7 @@ Examples:
 * Supported orders:
   * `asc` (ascending)
   * `desc` (descending)
-* If `ord/ORDER` is omitted, the default sort order is ascending.
+* If `order/ORDER` is omitted, the default sort order is ascending.
 * Sorting is applied to the currently displayed athlete list.
 * For `pb`, athletes with no recorded timing for the specified event will appear after athletes with a recorded timing.
 </div>
