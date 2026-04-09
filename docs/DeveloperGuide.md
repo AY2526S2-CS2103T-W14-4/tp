@@ -1,11 +1,11 @@
 ---
 layout: page
 title: Developer Guide
+toc: true
 ---
+
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
