@@ -25,49 +25,18 @@ and essential contact information efficiently**. It is optimised for use via a *
 Pacebook runs on Java, a free software platform required to run the app.
 You do not need to know how to program — just install it once using the links provided below
 
-1. Ensure that Java `17` or above is installed on your computer.<br>
-<div markdown="block" class="alert alert-info">
-**Checking if you have Java installed** <br>
+1. Ensure that Java `17` or above is installed on your computer.
 
-1. Open a command terminal
-
-2. Type the following command and press Enter:
-
-   ```
-   java -version
-   ```
-
-   If Java is installed correctly, you should see the installed Java version displayed.  
-   For example:
-
+   Open a terminal and run `java -version`. You should see output like:
    ```
    openjdk version "17.0.12" 2024-07-16
    ```
+   If Java is not installed, follow the guide for your OS:
+   - **Windows:** [Java installation guide for Windows](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+   - **Mac:** [Java installation guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+   - **Linux:** [Java installation guide for Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-   or
-
-   ```
-   java version "17.0.9" 2023-10-17 LTS
-   ```
-
-   If Java is not installed, you may see an error such as:
-
-   ```
-   'java' is not recognized as an internal or external command
-   ```
-
-   or
-
-   ```
-   command not found: java
-   ```
-  
-  If you do not have Java installed, follow the installation guide for your operating system:
-  - **Windows:** [Java installation guide for Windows](https://se-education.org/guides/tutorials/javaInstallationWindows.html).
-  - **Mac:** [Java installation guide for Mac](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-  - **Linux:** [Java installation guide for Linux](https://se-education.org/guides/tutorials/javaInstallationLinux.html).
-
-2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
+./g2. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-W14-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Pacebook.
 
@@ -82,7 +51,7 @@ You do not need to know how to program — just install it once using the links 
 6. Type a command into the command box and press Enter to run it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-  * `add n/John Doe a/21 p/98765432 e/johnd@example.com ad/John street, block 123, #01-01 d/01/01/2001` : Adds an athlete named `John Doe` to Pacebook.
+  * `add n/John Doe a/21 p/98765432 e/johnd@example.com ad/John street, block 123, #01-01 d/01/01/2001 ec/98714567` : Adds an athlete named `John Doe` to Pacebook.
 
   * `find n/Alex`: Finds an athlete named Alex.
 
@@ -174,12 +143,11 @@ These needs are built around the pace and demands of a real club coaching workfl
 
 Adds a new athlete to Pacebook.
 
-Format: `add n/NAME a/AGE p/PHONE e/EMAIL ad/ADDRESS d/START_DATE [ec/EMERGENCY_CONTACT] [t/TAG]… [av/AVAILABLE_DAY]…​`
+Format: `add n/NAME a/AGE p/PHONE e/EMAIL ad/ADDRESS d/START_DATE ec/EMERGENCY_CONTACT [t/TAG]… [av/AVAILABLE_DAY]…​`
 
 Example:
 * A new sprinter joins your team A after the open trial session:
-  * `add n/Sarah Tan a/24 p/91234567 e/sarah.tan@email.com 
-ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 t/sprinter t/teamA`
+  * `add n/Sarah Tan a/24 p/91234567 e/sarah.tan@email.com ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 ec/Jane Doe 81234567 t/sprinter t/teamA`
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tips:**
 
@@ -187,7 +155,7 @@ ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 t/sprinter t/teamA`
 - `AGE` must be a number between 10-99.
 - `PHONE` must be a valid Singapore phone number (i.e. 8 digits, starts with 8 or 9).
 - `EMAIL` must be a valid email, i.e. email@domain.
-- `EMERGENCY_CONTACT` can be any non-blank text, e.g. a name and number like `Jane Doe 91234567`. If omitted, it defaults to `N/A`.
+- `EMERGENCY_CONTACT` must be provided. It can be any non-blank text, e.g. a name and number like `Jane Doe 91234567`.
 - Avoid using vague names such as `John` if you coach multiple athletes with similar names.
 </div>
 
@@ -263,7 +231,7 @@ Examples:
 * The search is case-insensitive. e.g. `n/hans` will match `n/Hans`
 * You must provide at least one field to search.
 * The order of the search criteria does not matter. e.g. `n/Jessy t/captain` will match `t/captain n/Jessy`
-* Only full words will be matched. e.g. `Han` will not match `Hans`
+* Name and phone searches use partial matching. e.g. `Han` will match `Hans`, `find p/92` will match any phone number containing `92`.
 * Athletes must satisfy all the criteria.
   e.g. `n/Alex t/Marathoner` will return only the athlete with the names Alex and tag Marathoner
 * Use `list` to clear the search filter and display all the athletes in Pacebook.
@@ -598,7 +566,7 @@ Furthermore, certain edits can cause Pacebook to behave in unexpected ways if va
 
 | Action             | Format, Examples                                                                                                                                                                                                                       |
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Athlete**    | `add n/NAME a/AGE p/PHONE e/EMAIL ad/ADDRESS d/START_DATE [ec/EMERGENCY_CONTACT] [t/TAG]… [av/AVAILABLE_DAY]…​` <br> e.g., `add n/Sarah Tan a/24 p/91234567 e/sarah.tan@email.com ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 t/sprinter t/teamA` |
+| **Add Athlete**    | `add n/NAME a/AGE p/PHONE e/EMAIL ad/ADDRESS d/START_DATE ec/EMERGENCY_CONTACT [t/TAG]… [av/AVAILABLE_DAY]…​` <br> e.g., `add n/Sarah Tan a/24 p/91234567 e/sarah.tan@email.com ad/Blk 12 Jurong West Ave 1, #05-12 d/01/04/2025 ec/Jane Doe 81234567 t/sprinter t/teamA` |
 | **Edit**           | `edit INDEX [n/NAME] [a/AGE] [p/PHONE] [e/EMAIL] [ad/ADDRESS] [d/START_DATE] [ec/EMERGENCY_CONTACT] [t/TAG]… [av/AVAILABLE_DAY]…​`<br> e.g., `edit 1 n/Marcus Lim e/marcus@email.com`                                                   |
 | **Find**           | `find [n/NAME] [p/PHONE] [t/TAG] [av/AVAILABLE_DAY]`<br> e.g., `find n/Sarah t/sprinter`                                                                                                                                               |
 | **List**           | `list`                                                                                                                                                                                                                                 |

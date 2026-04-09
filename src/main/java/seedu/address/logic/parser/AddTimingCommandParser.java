@@ -18,7 +18,7 @@ import seedu.address.model.person.RunTiming;
  *
  * <p>Expected command format:</p>
  * <pre>
- * addtiming INDEX min/MINUTES sec/SECONDS
+ * addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS
  * </pre>
  */
 public class AddTimingCommandParser implements Parser<AddTimingCommand> {
@@ -60,7 +60,7 @@ public class AddTimingCommandParser implements Parser<AddTimingCommand> {
             seconds = Double.parseDouble(map.getValue(PREFIX_SEC).get());
         } catch (Exception e) {
             throw new ParseException(
-                    "Invalid command format: addtiming INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
+                    "Invalid command format: addtime INDEX dist/DISTANCE min/MINUTES sec/SECONDS");
         }
 
         RunTiming timing = getRunTiming(distance, minutes, seconds);

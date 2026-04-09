@@ -27,6 +27,12 @@ public class SortCommand extends Command {
             + "Examples: " + COMMAND_WORD + " by/name ord/asc\n"
             + "          " + COMMAND_WORD + " by/pb dist/400m ord/desc";
 
+    public static final String MESSAGE_INVALID_SORT_FIELD =
+            "Invalid sort field: '%s'.\nSupported fields: name, pb\nExample: sort by/name ord/desc";
+
+    public static final String MESSAGE_INVALID_SORT_ORDER =
+            "Invalid sort order: '%s'.\nSupported orders: asc, desc\nExample: sort by/pb dist/400m ord/desc";
+
     public static final String MESSAGE_SUCCESS = "Sorted athletes by %s in %s order.";
     public static final String MESSAGE_SUCCESS_WITH_DISTANCE = "Sorted athletes by %s for %s in %s order.";
 
@@ -74,15 +80,19 @@ public class SortCommand extends Command {
             return sortOrder == SortOrder.DESC ? nameComparator.reversed() : nameComparator;
 
         case PB:
-            if (sortOrder == SortOrder.ASC) {
-                return Comparator
-                        .comparing((Person person) -> !hasTimingForDistance(person))
-                        .thenComparingDouble(this::getSortTimeForDistance);
-            } else {
-                return Comparator
-                        .comparing((Person person) -> !hasTimingForDistance(person))
-                        .thenComparing(Comparator.comparingDouble(this::getSortTimeForDistance).reversed());
-            }
+            Comparator<Person> pbComparator = Comparator
+                    .comparing((Person person) -> person.getBestTimeForDistance(distance) == Double.MAX_VALUE)
+                    .thenComparingDouble(person -> person.getBestTimeForDistance(distance))
+                    .thenComparing(person -> person.getName().toString().toLowerCase());
+
+            return sortOrder == SortOrder.DESC
+                    ? Comparator
+                    .comparing((Person person) -> person.getBestTimeForDistance(distance) == Double.MAX_VALUE)
+                    .thenComparing(
+                            Comparator.comparingDouble((Person person) -> person.getBestTimeForDistance(distance))
+                                    .reversed())
+                    .thenComparing(person -> person.getName().toString().toLowerCase())
+                    : pbComparator;
 
         default:
             throw new CommandException("Unsupported sort field: " + sortField);
