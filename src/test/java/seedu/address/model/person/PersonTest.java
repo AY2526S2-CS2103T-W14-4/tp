@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVAILABLE_DAY_BOB;
@@ -46,7 +47,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // same phone, different name -> returns true (phone is the unique identifier)
+        // same phone, different name -> returns true
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
@@ -77,6 +78,10 @@ public class PersonTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different age -> returns false
+        editedAlice = new PersonBuilder(ALICE).withAge("99").build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different phone -> returns false
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -93,6 +98,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different start date -> returns false
+        editedAlice = new PersonBuilder(ALICE).withStartDate("02/02/2024").build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -100,6 +109,29 @@ public class PersonTest {
         // different available days -> returns false
         editedAlice = new PersonBuilder(ALICE).withAvailableDays(VALID_AVAILABLE_DAY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void equals_sameRunTimings_returnsTrue() {
+        Person personWithTimingA = new PersonBuilder(ALICE).build();
+        Person personWithTimingB = new PersonBuilder(ALICE).build();
+
+        personWithTimingA.addRunTiming(new RunTiming("400m", 0, 50.0));
+        personWithTimingB.addRunTiming(new RunTiming("400m", 0, 50.0));
+
+        assertTrue(personWithTimingA.equals(personWithTimingB));
+    }
+
+    @Test
+    public void hashCode_sameValues_sameHashCode() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+    }
+
+    @Test
+    public void hashCode_differentAvailableDays_differentHashCode() {
+        Person editedAlice = new PersonBuilder(ALICE).withAvailableDays(VALID_AVAILABLE_DAY_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 
     @Test
@@ -113,6 +145,7 @@ public class PersonTest {
         Person person = new PersonBuilder().build();
         person.addRunTiming(new RunTiming("400m", 0, 50.0));
         person.addRunTiming(new RunTiming("2.4km", 10, 30.0));
+
         String display = person.getRunTimingsDisplay();
         assertTrue(display.startsWith("Run Timings: "));
         assertTrue(display.contains("400m, 0min 50s"));
