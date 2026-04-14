@@ -26,8 +26,8 @@ public class SortCommandIntegrationTest {
         new FindCommand(new TagContainsKeywordsPredicate(List.of("friends"))).execute(model);
 
         List<Person> expectedSortedSubset = model.getFilteredPersonList().stream()
-                .sorted(Comparator.comparing(
-                        (Person person) -> person.getName().toString().toLowerCase()).reversed())
+                .sorted(Comparator.comparing((Person person) -> person.getName()
+                        .toString().toLowerCase()).reversed())
                 .collect(Collectors.toList());
 
         new SortCommand(SortCommand.SortField.NAME, null, SortCommand.SortOrder.DESC).execute(model);
