@@ -223,9 +223,11 @@ Actor: Coach
 
 MSS:
 
-1. Coach provides the athlete’s details.
-2. Pacebook adds the athlete profile.
-3. Pacebook shows the added athlete profile.
+1. Coach inputs details of athlete to be added: `add n/John Tan a/17 p/91234567 e/johntan@example.com ad/NUS Hall d/02/10/2026 ec/Father 92345678`
+2. Pacebook validates all compulsory fields (name, age, phone, email, address, emergency contact, start date), checks that the combination of name and phone number is unique, and rejects the command if the emergency contact does not follow the required `Relationship Phone` format.
+3. Pacebook saves the athlete profile to the data file.
+4. Pacebook displays success message with added athlete details in the message box: Added athlete: John Tan (Age: 17, Phone: 91234567, Email: johntan@example.com, Address: NUS Hall, Emergency Contact: Father 92345678, Start: 02/10/2026)
+5. Athlete details are now visible in the main window.
    Use case ends.
 
 Extensions:
@@ -236,10 +238,10 @@ Extensions:
     - Steps 1a1-1a2 are repeated until the details are valid.
     - Use case resumes from step 2.
 
-- **1b.** Pacebook detects that the phone number already exists.
-    - **1b1.** Pacebook informs the Coach that the phone number already exists.
-    - **1b2.** Coach provides the athlete’s details again.
-    - Steps 1b1-1b2 are repeated until the details are valid.
+- **1b.** Pacebook detects that an athlete with the same name and phone number already exists.
+    - **1b1.** Pacebook displays an error message indicating the duplicate athlete.
+    - **1b2.** Coach enters new data.
+    - Steps 1b1-1b2 are repeated until the data entered are correct.
     - Use case resumes from step 2.
 
 ---
@@ -252,8 +254,10 @@ Actor: Coach
 
 MSS:
 
-1. Coach requests to view an athlete profile.
-2. Pacebook shows the athlete’s profile and personal bests.
+1. Coach inputs the athlete index to view: `view 1`
+2. Pacebook retrieves the athlete profile corresponding to the index.
+3. Pacebook displays the athlete’s profile (name, age, phone, email, address, emergency contact, start date) in the message box.
+4. Pacebook displays recorded run timings, or shows "No training records yet" if there are none.
    Use case ends.
 
 Extensions:
