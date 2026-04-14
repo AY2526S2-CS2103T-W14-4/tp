@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.RunTiming;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -47,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label availableDays;
     @FXML
+    private Label runTimings;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -70,5 +73,15 @@ public class PersonCard extends UiPart<Region> {
                 .map(day -> day.availableDay)
                 .sorted()
                 .collect(java.util.stream.Collectors.joining(", ")));
+        runTimings.setText(formatRunTimings(person));
+    }
+
+    private String formatRunTimings(Person person) {
+        if (person.getRunTimings().isEmpty()) {
+            return "Run Timings: None";
+        }
+        return "Run Timings: " + person.getRunTimings().stream()
+                .map(RunTiming::getPrintFormat)
+                .collect(java.util.stream.Collectors.joining(" | "));
     }
 }
