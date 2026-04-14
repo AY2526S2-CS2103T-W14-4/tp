@@ -226,7 +226,7 @@ Format: `find [n/KEYWORD] [p/PHONE_NUMBER] [t/TAG]… [av/AVAILABLE_DAY]…`
 
 Examples:
 * You need to contact all sprinters before Saturday's time trial:
-  * `find t/sprinter`
+  * `find t/sprinter` <br>
   ![FindCommand](images/FindCommand.png)
 * You are filling a relay slot and need a teamA runner available on Tuesdays:
   * `find t/teamA av/Tue`
@@ -265,7 +265,7 @@ Format: `list`
 
 Example:
 * Pulling up the full roster to confirm who is registered as a trainee under you:
-  * `list`
+  * `list` <br>
   ![ListCommand](images/ListCommand.png)
 
 <div markdown="block" class="alert alert-success">✅ **Expected output:**
@@ -282,7 +282,7 @@ Use `list` before commands like `view`, `edit`, and `del` if you want to confirm
 
 ### Sorting athletes : `sort`
 
-Sorts the displayed athlete list by the specified field.
+Sorts the athlete list by the specified field.
 
 Format: `sort by/FIELD [dist/DISTANCE] [ord/ORDER]`
 
@@ -313,7 +313,6 @@ Examples:
   * `asc` (ascending)
   * `desc` (descending)
 * If `ord/ORDER` is omitted, the default sort order is ascending.
-* Sorting is applied to the currently displayed athlete list.
 * For `pb`, athletes with no recorded timing for the specified event will appear after athletes with a recorded timing.
 </div>
 
